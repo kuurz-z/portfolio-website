@@ -2017,14 +2017,17 @@ section#projects {
     text-align: center;
 }
 
-.contact-info a {
-    color: var(--text-color); /* Ensure consistent color for phone number link */
+.contact-info a,
+.contact-info a[href^="tel:"] {
+    color: var(--text-color) !important; /* Ensure consistent color for phone number link */
     text-decoration: none; /* Optional: Remove underline if not desired */
 }
 
 .contact-info a:hover,
-.contact-info a:active {
-    color: var(--text-color); /* Prevent color change on hover/active */
+.contact-info a:active,
+.contact-info a[href^="tel:"]:hover,
+.contact-info a[href^="tel:"]:active {
+    color: var(--text-color) !important; /* Prevent color change on hover/active */
 }
 
 .contact-info .social-links {
@@ -2039,13 +2042,16 @@ section#projects {
     box-shadow: 0 4px 6px rgba(0,0,0,0.3);
 }
 
-.dark-mode .contact-info a {
-    color: var(--text-color); /* Ensure consistent color for phone number link in dark mode */
+.dark-mode .contact-info a,
+.dark-mode .contact-info a[href^="tel:"] {
+    color: var(--text-color) !important; /* Ensure consistent color for phone number link in dark mode */
 }
 
 .dark-mode .contact-info a:hover,
-.dark-mode .contact-info a:active {
-    color: var(--text-color); /* Prevent color change on hover/active in dark mode */
+.dark-mode .contact-info a:active,
+.dark-mode .contact-info a[href^="tel:"]:hover,
+.dark-mode .contact-info a[href^="tel:"]:active {
+    color: var(--text-color) !important; /* Prevent color change on hover/active in dark mode */
 }
 
 @media (max-width: 992px) {
