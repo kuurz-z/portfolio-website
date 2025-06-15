@@ -309,7 +309,7 @@ section:hover h2::after {
 body:not(.dark-mode) #featured-details .featured-details-content {
     background: #fff !important;
     color: #222 !important;
-    box-shadow: 0 4px 16px rgba(44,62,80,0.08) !important;
+    box-shadow: 0 44px 16px rgba(44,62,80,0.08) !important;
 }
 body:not(.dark-mode) #featured-details h2,
 body:not(.dark-mode) #featured-details h3 {
@@ -1916,6 +1916,10 @@ body:not(.dark-mode) #featured-details .featured-details-content {
         padding: 4rem 1.5rem; /* Keep reduced horizontal padding */
     }
     
+    #featured-details {
+        padding: 0 1.5rem; /* Add horizontal padding to featured details section */
+    }
+
     section h2 {
         font-size: 2.2rem;
         margin-bottom: 1.5rem;
@@ -2089,6 +2093,10 @@ body:not(.dark-mode) #featured-details .featured-details-content {
         padding: 3rem 1rem; /* Keep further reduced horizontal padding */
     }
     
+    #featured-details {
+        padding: 0 1rem; /* Adjust horizontal padding for even smaller screens */
+    }
+
     section h2 {
         font-size: 1.8rem;
         margin-bottom: 1.2rem;
