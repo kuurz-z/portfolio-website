@@ -352,7 +352,8 @@ function initHamburgerMenu() {
     const navLinksContainer = document.querySelector('.nav-links-container');
     // const navLinks = document.querySelectorAll('.nav-links-container ul li a'); // No longer needed here
 
-    hamburger.addEventListener('click', () => {
+    hamburger.addEventListener('click', (e) => {
+        e.preventDefault(); // Prevent default link behavior if any
         hamburger.classList.toggle('active');
         navLinksContainer.classList.toggle('active');
         // Toggle body scroll lock to prevent scrolling when menu is open

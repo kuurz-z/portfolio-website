@@ -138,7 +138,8 @@
 }
 
 .dark-mode .project-card:hover {
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+    box-shadow: none;
+    transform: translateY(0);
 }
 
 .dark-mode .project-content h3 {
@@ -460,11 +461,11 @@ nav a.active::after {
 }
 
 .prev-btn {
-    left: calc(50% - 200px - 45px);
+    left: calc(50% - 175px - 45px - 20px); /* Half card width (175px) - button width (45px) - offset (20px) */
 }
 
 .next-btn {
-    right: calc(50% - 200px - 45px);
+    right: calc(50% - 175px - 45px - 20px); /* Half card width (175px) - button width (45px) - offset (20px) */
 }
 
 /* Hamburger Menu Styles */
@@ -504,11 +505,11 @@ nav a.active::after {
     }
     
     .prev-btn {
-        left: calc(50% - 175px - 45px);
+        left: calc(50% - 175px - 45px - 20px); /* Consistent with default for this breakpoint */
     }
     
     .next-btn {
-        right: calc(50% - 175px - 45px);
+        right: calc(50% - 175px - 45px - 20px); /* Consistent with default for this breakpoint */
     }
 }
 
@@ -563,7 +564,9 @@ nav a.active::after {
     }
 
     .carousel-btn {
-        display: none; /* Hide carousel buttons on screens 768px and smaller */
+        width: 40px; /* Re-apply specific width/height/font-size */
+        height: 40px;
+        font-size: 1.5rem;
     }
 
     /* Project Section adjustments for centering */
@@ -571,16 +574,23 @@ nav a.active::after {
         padding: 4rem 0; /* Remove side padding from section, let viewport handle it */
     }
     .projects-viewport-wrapper {
-        max-width: 330px; /* One card (300px) + gap (30px) = 330px */
+        max-width: 300px; /* Set to exact width of one card */
         margin: 0 auto;
     }
     .projects-grid {
-        scroll-padding: 0 15px; /* Half of (330px - 300px) = 15px */
-        /* padding-left: 15px; */ /* Removed as redundant with scroll-padding */
-        /* padding-right: 15px; */ /* Removed as redundant with scroll-padding */
+        scroll-padding: 0; /* Remove scroll-padding for perfect centering */
+        gap: 30px; /* Keep gap for spacing between cards */
     }
     .project-card {
         flex: 0 0 300px; /* Card width */
+    }
+
+    .prev-btn {
+        left: calc(50% - 150px - 40px - 15px); /* Half card width (150px) - button width (40px) - offset (15px) */
+    }
+    
+    .next-btn {
+        right: calc(50% - 150px - 40px - 15px); /* Half card width (150px) - button width (40px) - offset (15px) */
     }
 }
 
@@ -601,11 +611,11 @@ nav a.active::after {
     }
     
     .prev-btn {
-        left: calc(50% - 150px - 35px);
+        left: calc(50% - 140px - 35px - 10px); /* Half card width (140px) - button width (35px) - offset (10px) */
     }
     
     .next-btn {
-        right: calc(50% - 150px - 35px);
+        right: calc(50% - 140px - 35px - 10px); /* Half card width (140px) - button width (35px) - offset (10px) */
     }
 
     /* Project Section adjustments for centering */
@@ -613,13 +623,11 @@ nav a.active::after {
         padding: 3rem 0; /* Adjust padding and remove side padding from section */
     }
     .projects-viewport-wrapper {
-        max-width: 300px; /* One card (280px) + smaller gap (20px) = 300px */
+        max-width: 280px; /* Set to exact width of one card */
     }
     .projects-grid {
         gap: 20px; /* Reduced gap for smaller screens */
-        scroll-padding: 0 10px; /* Half of (300px - 280px) = 10px */
-        /* padding-left: 10px; */ /* Removed as redundant with scroll-padding */
-        /* padding-right: 10px; */ /* Removed as redundant with scroll-padding */
+        scroll-padding: 0; /* Remove scroll-padding for perfect centering */
     }
     .project-card {
         flex: 0 0 280px; /* Card width */
@@ -688,16 +696,22 @@ nav a.active::after {
         padding: 2.5rem 0; /* Adjust padding */
     }
     .projects-viewport-wrapper {
-        max-width: 280px; /* One card (260px) + gap (20px) = 280px */
+        max-width: 260px; /* Set to exact width of one card */
     }
     .projects-grid {
         gap: 20px; /* Consistent small gap */
-        scroll-padding: 0 10px; /* Half of (280px - 260px) = 10px */
-        /* padding-left: 10px; */ /* Removed as redundant with scroll-padding */
-        /* padding-right: 10px; */ /* Removed as redundant with scroll-padding */
+        scroll-padding: 0; /* Remove scroll-padding for perfect centering */
     }
     .project-card {
         flex: 0 0 260px; /* Card width */
+    }
+
+    .prev-btn {
+        left: calc(50% - 130px - 35px - 10px); /* Half card width (130px) - button width (35px) - offset (10px) */
+    }
+    
+    .next-btn {
+        right: calc(50% - 130px - 35px - 10px); /* Half card width (130px) - button width (35px) - offset (10px) */
     }
 }
 
@@ -718,25 +732,23 @@ nav a.active::after {
     }
     
     .prev-btn {
-        left: calc(50% - 140px - 30px);
+        left: calc(50% - 120px - 30px - 10px); /* Half card width (120px) - button width (30px) - offset (10px) */
     }
     
     .next-btn {
-        right: calc(50% - 140px - 30px);
+        right: calc(50% - 120px - 30px - 10px); /* Half card width (120px) - button width (30px) - offset (10px) */
     }
 
-    /* Project Section adjustments for centering (smallest screens) */
+    /* Project Section adjustments for centering */
     section#projects {
         padding: 2rem 0; /* Adjust padding */
     }
     .projects-viewport-wrapper {
-        max-width: 260px; /* One card (240px) + gap (20px) = 260px */
+        max-width: 240px; /* Set to exact width of one card */
     }
     .projects-grid {
         gap: 20px; /* Consistent small gap */
-        scroll-padding: 0 10px; /* Half of (260px - 240px) = 10px */
-        /* padding-left: 10px; */ /* Removed as redundant with scroll-padding */
-        /* padding-right: 10px; */ /* Removed as redundant with scroll-padding */
+        scroll-padding: 0; /* Remove scroll-padding for perfect centering */
     }
     .project-card {
         flex: 0 0 240px; /* Card width */
@@ -1176,7 +1188,7 @@ section#projects {
 }
 
 .projects-viewport-wrapper {
-    max-width: 380px; /* Width of one card + its gap (350px card + 30px gap) */
+    max-width: 350px; /* Set to exact width of one card */
     margin: 0 auto;
     overflow: hidden;
     position: relative;
@@ -1193,7 +1205,7 @@ section#projects {
     gap: 30px;
     padding-bottom: 1rem;
     width: auto; /* Let it stretch to content */
-    scroll-padding: 0 15px; /* Added for centering first/last card */
+    scroll-padding: 0; /* Remove scroll-padding for perfect centering of one card */
 }
 
 .projects-grid::-webkit-scrollbar {
@@ -1213,6 +1225,11 @@ section#projects {
     display: flex;
     flex-direction: column;
     height: auto;
+}
+
+.project-card:hover {
+    box-shadow: none;
+    transform: translateY(0);
 }
 
 .project-image {
@@ -1784,13 +1801,12 @@ section#projects {
         padding: 4rem 0; /* Remove side padding from section, let viewport handle it */
     }
     .projects-viewport-wrapper {
-        max-width: 330px; /* One card (300px) + gap (30px) = 330px */
+        max-width: 300px; /* Set to exact width of one card */
         margin: 0 auto;
     }
     .projects-grid {
-        scroll-padding: 0 15px; /* Half of (330px - 300px) = 15px */
-        /* padding-left: 15px; */ /* Removed as redundant with scroll-padding */
-        /* padding-right: 15px; */ /* Removed as redundant with scroll-padding */
+        scroll-padding: 0; /* Remove scroll-padding for perfect centering */
+        gap: 30px; /* Keep gap for spacing between cards */
     }
     .project-card {
         flex: 0 0 300px; /* Card width */
@@ -1814,11 +1830,11 @@ section#projects {
     }
     
     .prev-btn {
-        left: calc(50% - 150px - 35px);
+        left: calc(50% - 140px - 35px - 10px); /* Half card width (140px) - button width (35px) - offset (10px) */
     }
     
     .next-btn {
-        right: calc(50% - 150px - 35px);
+        right: calc(50% - 140px - 35px - 10px); /* Half card width (140px) - button width (35px) - offset (10px) */
     }
 
     /* Project Section adjustments for centering */
@@ -1826,13 +1842,11 @@ section#projects {
         padding: 3rem 0; /* Adjust padding and remove side padding from section */
     }
     .projects-viewport-wrapper {
-        max-width: 300px; /* One card (280px) + smaller gap (20px) = 300px */
+        max-width: 280px; /* Set to exact width of one card */
     }
     .projects-grid {
         gap: 20px; /* Reduced gap for smaller screens */
-        scroll-padding: 0 10px; /* Half of (300px - 280px) = 10px */
-        /* padding-left: 10px; */ /* Removed as redundant with scroll-padding */
-        /* padding-right: 10px; */ /* Removed as redundant with scroll-padding */
+        scroll-padding: 0; /* Remove scroll-padding for perfect centering */
     }
     .project-card {
         flex: 0 0 280px; /* Card width */
@@ -1901,13 +1915,11 @@ section#projects {
         padding: 2.5rem 0; /* Adjust padding */
     }
     .projects-viewport-wrapper {
-        max-width: 280px; /* One card (260px) + gap (20px) = 280px */
+        max-width: 260px; /* Set to exact width of one card */
     }
     .projects-grid {
         gap: 20px; /* Consistent small gap */
-        scroll-padding: 0 10px; /* Half of (280px - 260px) = 10px */
-        /* padding-left: 10px; */ /* Removed as redundant with scroll-padding */
-        /* padding-right: 10px; */ /* Removed as redundant with scroll-padding */
+        scroll-padding: 0; /* Remove scroll-padding for perfect centering */
     }
     .project-card {
         flex: 0 0 260px; /* Card width */
@@ -1931,25 +1943,23 @@ section#projects {
     }
     
     .prev-btn {
-        left: calc(50% - 140px - 30px);
+        left: calc(50% - 120px - 30px - 10px); /* Half card width (120px) - button width (30px) - offset (10px) */
     }
     
     .next-btn {
-        right: calc(50% - 140px - 30px);
+        right: calc(50% - 120px - 30px - 10px); /* Half card width (120px) - button width (30px) - offset (10px) */
     }
 
-    /* Project Section adjustments for centering (smallest screens) */
+    /* Project Section adjustments for centering */
     section#projects {
         padding: 2rem 0; /* Adjust padding */
     }
     .projects-viewport-wrapper {
-        max-width: 260px; /* One card (240px) + gap (20px) = 260px */
+        max-width: 240px; /* Set to exact width of one card */
     }
     .projects-grid {
         gap: 20px; /* Consistent small gap */
-        scroll-padding: 0 10px; /* Half of (260px - 240px) = 10px */
-        /* padding-left: 10px; */ /* Removed as redundant with scroll-padding */
-        /* padding-right: 10px; */ /* Removed as redundant with scroll-padding */
+        scroll-padding: 0; /* Remove scroll-padding for perfect centering */
     }
     .project-card {
         flex: 0 0 240px; /* Card width */
