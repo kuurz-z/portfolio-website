@@ -318,6 +318,7 @@ body {
     padding: 0;
     width: 100%; /* Ensure body takes full width */
     height: 100%; /* Ensure body takes full height */
+    overflow-x: hidden; /* Explicitly hide horizontal overflow for body */
 }
 
 body.no-scroll {
@@ -449,7 +450,7 @@ nav a.active::after {
     font-size: 1.8rem;
     cursor: pointer;
     z-index: 10;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    box-shadow: none; /* Removed shadow as requested */
     transition: background 0.3s, transform 0.3s, opacity 0.3s;
 }
 
@@ -565,19 +566,21 @@ nav a.active::after {
         display: none; /* Hide carousel buttons on screens 768px and smaller */
     }
 
-    /* Project Section adjustments */
+    /* Project Section adjustments for centering */
     section#projects {
-        padding: 4rem 20px; /* Ensure padding on sides */
+        padding: 4rem 0; /* Remove side padding from section, let viewport handle it */
     }
     .projects-viewport-wrapper {
-        max-width: 330px; /* Half of 300px card + 30px gap = 330px */
-        margin: 0 auto; /* Ensure it's centered */
+        max-width: 330px; /* One card (300px) + gap (30px) = 330px */
+        margin: 0 auto;
     }
     .projects-grid {
-        scroll-padding: 0 15px; /* (330px - 300px) / 2 = 15px */
+        scroll-padding: 0 15px; /* Half of (330px - 300px) = 15px */
+        /* padding-left: 15px; */ /* Removed as redundant with scroll-padding */
+        /* padding-right: 15px; */ /* Removed as redundant with scroll-padding */
     }
     .project-card {
-        flex: 0 0 300px; /* Adjust card width */
+        flex: 0 0 300px; /* Card width */
     }
 }
 
@@ -604,32 +607,97 @@ nav a.active::after {
     .next-btn {
         right: calc(50% - 150px - 35px);
     }
+
+    /* Project Section adjustments for centering */
+    section#projects {
+        padding: 3rem 0; /* Adjust padding and remove side padding from section */
+    }
+    .projects-viewport-wrapper {
+        max-width: 300px; /* One card (280px) + smaller gap (20px) = 300px */
+    }
+    .projects-grid {
+        gap: 20px; /* Reduced gap for smaller screens */
+        scroll-padding: 0 10px; /* Half of (300px - 280px) = 10px */
+        /* padding-left: 10px; */ /* Removed as redundant with scroll-padding */
+        /* padding-right: 10px; */ /* Removed as redundant with scroll-padding */
+    }
+    .project-card {
+        flex: 0 0 280px; /* Card width */
+    }
 }
 
 @media (max-width: 480px) {
-    section#projects {
-        padding: 3rem 15px;
-    }
-    .projects-viewport-wrapper {
-        max-width: 295px; /* Width of one card + its gap (280px card + 15px gap) */
-    }
-    .projects-grid {
-        scroll-padding: 0 7.5px; /* (295px - 280px) / 2 = 7.5px */
-    }
-    .project-card {
-        width: 280px;
-    }
-    .carousel-btn {
-        width: 35px;
-        height: 35px;
-        font-size: 1.2rem;
-    }
-    .prev-btn {
-        left: calc(50% - 140px - 35px);
+    section {
+        padding: 3rem 1rem; /* Further reduced horizontal padding */
     }
     
-    .next-btn {
-        right: calc(50% - 140px - 35px);
+    section h2 {
+        font-size: 1.8rem;
+    }
+    
+    .about-content,
+    .skills-container {
+        gap: 2rem;
+    }
+
+    .hero-content {
+        padding: 0 1rem; /* Further reduced horizontal padding */
+        gap: 2rem;
+    }
+
+    .profile-image {
+        max-width: 250px;
+    }
+
+    .skill-category {
+        padding: 1.5rem;
+    }
+
+    .skills-tags {
+        grid-template-columns: 1fr;
+    }
+    
+    .skill-tag {
+        padding: 0;
+        font-size: 1rem;
+    }
+    
+    .skill-tag i {
+        font-size: 1.1rem;
+    }
+
+    .featured-project-section {
+        padding: 3rem 1rem; /* Further reduced horizontal padding */
+    }
+
+    .featured-project-content {
+        padding: 1.5rem;
+        gap: 2rem;
+    }
+
+    .project-details h3 {
+        font-size: 1.8rem;
+    }
+
+    .project-description {
+        font-size: 0.95rem;
+    }
+
+    /* Project Section adjustments for centering (even smaller screens) */
+    section#projects {
+        padding: 2.5rem 0; /* Adjust padding */
+    }
+    .projects-viewport-wrapper {
+        max-width: 280px; /* One card (260px) + gap (20px) = 280px */
+    }
+    .projects-grid {
+        gap: 20px; /* Consistent small gap */
+        scroll-padding: 0 10px; /* Half of (280px - 260px) = 10px */
+        /* padding-left: 10px; */ /* Removed as redundant with scroll-padding */
+        /* padding-right: 10px; */ /* Removed as redundant with scroll-padding */
+    }
+    .project-card {
+        flex: 0 0 260px; /* Card width */
     }
 }
 
@@ -655,6 +723,23 @@ nav a.active::after {
     
     .next-btn {
         right: calc(50% - 140px - 30px);
+    }
+
+    /* Project Section adjustments for centering (smallest screens) */
+    section#projects {
+        padding: 2rem 0; /* Adjust padding */
+    }
+    .projects-viewport-wrapper {
+        max-width: 260px; /* One card (240px) + gap (20px) = 260px */
+    }
+    .projects-grid {
+        gap: 20px; /* Consistent small gap */
+        scroll-padding: 0 10px; /* Half of (260px - 240px) = 10px */
+        /* padding-left: 10px; */ /* Removed as redundant with scroll-padding */
+        /* padding-right: 10px; */ /* Removed as redundant with scroll-padding */
+    }
+    .project-card {
+        flex: 0 0 240px; /* Card width */
     }
 }
 
@@ -1566,7 +1651,7 @@ section#projects {
 /* Responsive adjustments */
 @media (max-width: 1200px) {
     section {
-        padding: 5rem 3rem;
+        padding: 5rem 2.5rem; /* Slightly reduced horizontal padding */
     }
     
     .about-content,
@@ -1575,7 +1660,7 @@ section#projects {
     }
 
     .hero-content {
-        padding: 0 3rem;
+        padding: 0 2.5rem; /* Slightly reduced horizontal padding */
         gap: 4rem;
     }
 
@@ -1591,7 +1676,7 @@ section#projects {
 
 @media (max-width: 768px) {
     section {
-        padding: 4rem 2rem;
+        padding: 4rem 1.5rem; /* Reduced horizontal padding */
     }
     
     section h2 {
@@ -1633,7 +1718,7 @@ section#projects {
         grid-template-columns: 1fr;
         text-align: center;
         gap: 3rem;
-        padding: 0 2rem;
+        padding: 0 1.5rem; /* Reduced horizontal padding */
     }
 
     .hero-text {
@@ -1678,11 +1763,11 @@ section#projects {
 
     /* Featured project section adjustments */
     .featured-project-section {
-        padding: 4rem 2rem;
+        padding: 4rem 1.5rem; /* Reduced horizontal padding */
     }
 
     .featured-project-content {
-        padding: 2rem;
+        padding: 2rem; /* Keep as is or slight reduction if needed */
         gap: 3rem; /* Adjusted gap for smaller screens */
     }
 
@@ -1693,11 +1778,70 @@ section#projects {
     .project-description {
         font-size: 1rem;
     }
+
+    /* Project Section adjustments for centering */
+    section#projects {
+        padding: 4rem 0; /* Remove side padding from section, let viewport handle it */
+    }
+    .projects-viewport-wrapper {
+        max-width: 330px; /* One card (300px) + gap (30px) = 330px */
+        margin: 0 auto;
+    }
+    .projects-grid {
+        scroll-padding: 0 15px; /* Half of (330px - 300px) = 15px */
+        /* padding-left: 15px; */ /* Removed as redundant with scroll-padding */
+        /* padding-right: 15px; */ /* Removed as redundant with scroll-padding */
+    }
+    .project-card {
+        flex: 0 0 300px; /* Card width */
+    }
+}
+
+@media (max-width: 576px) {
+    nav ul {
+        gap: 0.5rem;
+    }
+
+    nav a {
+        padding: 0.3rem 0.6rem;
+        font-size: 0.8rem;
+    }
+    
+    .carousel-btn {
+        width: 35px;
+        height: 35px;
+        font-size: 1.2rem;
+    }
+    
+    .prev-btn {
+        left: calc(50% - 150px - 35px);
+    }
+    
+    .next-btn {
+        right: calc(50% - 150px - 35px);
+    }
+
+    /* Project Section adjustments for centering */
+    section#projects {
+        padding: 3rem 0; /* Adjust padding and remove side padding from section */
+    }
+    .projects-viewport-wrapper {
+        max-width: 300px; /* One card (280px) + smaller gap (20px) = 300px */
+    }
+    .projects-grid {
+        gap: 20px; /* Reduced gap for smaller screens */
+        scroll-padding: 0 10px; /* Half of (300px - 280px) = 10px */
+        /* padding-left: 10px; */ /* Removed as redundant with scroll-padding */
+        /* padding-right: 10px; */ /* Removed as redundant with scroll-padding */
+    }
+    .project-card {
+        flex: 0 0 280px; /* Card width */
+    }
 }
 
 @media (max-width: 480px) {
     section {
-        padding: 3rem 1.5rem;
+        padding: 3rem 1rem; /* Further reduced horizontal padding */
     }
     
     section h2 {
@@ -1710,7 +1854,7 @@ section#projects {
     }
 
     .hero-content {
-        padding: 0 1.5rem;
+        padding: 0 1rem; /* Further reduced horizontal padding */
         gap: 2rem;
     }
 
@@ -1736,7 +1880,7 @@ section#projects {
     }
 
     .featured-project-section {
-        padding: 3rem 1.5rem;
+        padding: 3rem 1rem; /* Further reduced horizontal padding */
     }
 
     .featured-project-content {
@@ -1750,6 +1894,65 @@ section#projects {
 
     .project-description {
         font-size: 0.95rem;
+    }
+
+    /* Project Section adjustments for centering (even smaller screens) */
+    section#projects {
+        padding: 2.5rem 0; /* Adjust padding */
+    }
+    .projects-viewport-wrapper {
+        max-width: 280px; /* One card (260px) + gap (20px) = 280px */
+    }
+    .projects-grid {
+        gap: 20px; /* Consistent small gap */
+        scroll-padding: 0 10px; /* Half of (280px - 260px) = 10px */
+        /* padding-left: 10px; */ /* Removed as redundant with scroll-padding */
+        /* padding-right: 10px; */ /* Removed as redundant with scroll-padding */
+    }
+    .project-card {
+        flex: 0 0 260px; /* Card width */
+    }
+}
+
+@media (max-width: 400px) {
+    nav ul {
+        gap: 0.3rem;
+    }
+
+    nav a {
+        padding: 0.25rem 0.5rem;
+        font-size: 0.75rem;
+    }
+    
+    .carousel-btn {
+        width: 30px;
+        height: 30px;
+        font-size: 1rem;
+    }
+    
+    .prev-btn {
+        left: calc(50% - 140px - 30px);
+    }
+    
+    .next-btn {
+        right: calc(50% - 140px - 30px);
+    }
+
+    /* Project Section adjustments for centering (smallest screens) */
+    section#projects {
+        padding: 2rem 0; /* Adjust padding */
+    }
+    .projects-viewport-wrapper {
+        max-width: 260px; /* One card (240px) + gap (20px) = 260px */
+    }
+    .projects-grid {
+        gap: 20px; /* Consistent small gap */
+        scroll-padding: 0 10px; /* Half of (260px - 240px) = 10px */
+        /* padding-left: 10px; */ /* Removed as redundant with scroll-padding */
+        /* padding-right: 10px; */ /* Removed as redundant with scroll-padding */
+    }
+    .project-card {
+        flex: 0 0 240px; /* Card width */
     }
 }
 
