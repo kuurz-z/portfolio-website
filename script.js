@@ -125,7 +125,7 @@ function handleScrollAnimation() {
             if (entry.isIntersecting) {
                 entry.target.classList.add('visible');
                 // Add staggered animation to child elements
-                const children = entry.target.querySelectorAll('.skill-category, .project-card, .blog-card, .bio, .interests li, .skill-tag, .tool-item, .featured-project-content > *, section h2');
+                const children = entry.target.querySelectorAll('.skill-category, .project-card, .blog-card, .bio, .interests, .interests li, .skill-tag, .tool-item, .featured-project-content > *, section h2');
                 children.forEach((child, index) => {
                     setTimeout(() => {
                         child.style.opacity = '1';
