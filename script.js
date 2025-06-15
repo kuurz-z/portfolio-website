@@ -20,6 +20,15 @@ document.querySelectorAll('nav a').forEach(anchor => {
                 link.classList.remove('active');
             });
             this.classList.add('active');
+
+            // Close hamburger menu if open (for mobile navigation)
+            const hamburger = document.querySelector('.hamburger-menu');
+            const navLinksContainer = document.querySelector('.nav-links-container');
+            if (hamburger && navLinksContainer.classList.contains('active')) {
+                hamburger.classList.remove('active');
+                navLinksContainer.classList.remove('active');
+                document.body.classList.remove('no-scroll');
+            }
         }
     });
 });
@@ -323,33 +332,52 @@ function initProjectsCarousel() {
     }
 }
 
-// Initialize when DOM is loaded
+// Initialize all functions when the DOM is fully loaded
 document.addEventListener('DOMContentLoaded', () => {
     handleScroll();
     handleScrollAnimation();
     initDarkMode();
+    // typeWriter(document.querySelector('.hero-text .tagline'), "Information Technology Student"); // Uncomment if using typing effect
     initSkillHoverEffects();
     initProfileParallax();
     initScrollProgress();
     handleFeaturedViewProject();
     initProjectsCarousel();
-    
-    // Apply typing animation to header subtitle
-    const subtitle = document.querySelector('.hero-text .tagline');
-    if (subtitle) {
-        typeWriter(subtitle, subtitle.textContent);
-    }
+    initHamburgerMenu(); // New function call
+});
 
-    // Add enhanced hover effects to social links
-    const socialLinks = document.querySelectorAll('.social-link');
-    socialLinks.forEach(link => {
-        link.addEventListener('mouseenter', () => {
-            link.style.transform = 'translateY(-5px) rotate(360deg)';
-            link.style.boxShadow = '0 5px 15px rgba(0,0,0,0.3)';
-        });
-        link.addEventListener('mouseleave', () => {
-            link.style.transform = 'translateY(0) rotate(0deg)';
-            link.style.boxShadow = '';
-        });
+// Hamburger Menu functionality
+function initHamburgerMenu() {
+    const hamburger = document.querySelector('.hamburger-menu');
+    const navLinksContainer = document.querySelector('.nav-links-container');
+    // const navLinks = document.querySelectorAll('.nav-links-container ul li a'); // No longer needed here
+
+    hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        navLinksContainer.classList.toggle('active');
+        // Toggle body scroll lock to prevent scrolling when menu is open
+        document.body.classList.toggle('no-scroll', navLinksContainer.classList.contains('active'));
+    });
+
+    // Removed the navLinks.forEach listener as it's now handled by the smooth scrolling function
+    // navLinks.forEach(link => {
+    //     link.addEventListener('click', () => {
+    //         hamburger.classList.remove('active');
+    //         navLinksContainer.classList.remove('active');
+    //         document.body.classList.remove('no-scroll');
+    //     });
+    // });
+}
+
+// Add enhanced hover effects to social links
+const socialLinks = document.querySelectorAll('.social-link');
+socialLinks.forEach(link => {
+    link.addEventListener('mouseenter', () => {
+        link.style.transform = 'translateY(-5px) rotate(360deg)';
+        link.style.boxShadow = '0 5px 15px rgba(0,0,0,0.3)';
+    });
+    link.addEventListener('mouseleave', () => {
+        link.style.transform = 'translateY(0) rotate(0deg)';
+        link.style.boxShadow = '';
     });
 }); 
