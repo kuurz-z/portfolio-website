@@ -6,7 +6,16 @@ document.querySelectorAll('nav a').forEach(anchor => {
         console.log('Nav link clicked:', this.getAttribute('href'));
         e.preventDefault();
         const targetId = this.getAttribute('href');
-        const section = document.querySelector(targetId);
+        let section = document.querySelector(targetId);
+
+        // Check if featured-details is visible and if the clicked link is for featured-project
+        if (targetId === '#featured-project') {
+            const featuredDetailsSection = document.getElementById('featured-details');
+            if (featuredDetailsSection && featuredDetailsSection.style.display === 'block') {
+                section = featuredDetailsSection;
+            }
+        }
+
         console.log('Target ID:', targetId, 'Section found:', !!section);
         
         if (section) {
