@@ -103,6 +103,14 @@
 
 .dark-mode section h2 {
     color: var(--secondary-color);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.dark-mode section h2.visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .dark-mode section h2::after {
@@ -1069,6 +1077,14 @@ section h2 {
     margin-left: auto;
     margin-right: auto;
     width: 100%;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+section h2.visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 section h2::after {
@@ -1121,6 +1137,14 @@ section:hover h2::after {
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.1);
     box-shadow: var(--box-shadow);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.bio.visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .bio p {
@@ -1137,6 +1161,14 @@ section:hover h2::after {
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.1);
     box-shadow: var(--box-shadow);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.interests.visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .interests h3 {
@@ -1169,11 +1201,14 @@ section:hover h2::after {
     gap: 1rem;
     font-size: 1.1rem;
     transition: transform 0.3s ease;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 }
 
-.interests li:hover {
-    transform: translateX(10px);
-    color: var(--secondary-color);
+.interests li.visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .interests li i {
@@ -1224,16 +1259,18 @@ section#projects {
     border-radius: var(--border-radius);
     overflow: hidden;
     box-shadow: var(--box-shadow);
-    transition: all 0.3s ease;
     border: 1px solid rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
     display: flex;
     flex-direction: column;
     height: auto;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 }
 
-.project-card:hover {
-    box-shadow: none;
+.project-card.visible {
+    opacity: 1;
     transform: translateY(0);
 }
 
@@ -1341,6 +1378,14 @@ section#projects {
     overflow: hidden;
     border: 1px solid rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out, box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.skill-category.visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .skill-category::before {
@@ -1581,6 +1626,14 @@ section#projects {
 /* Blog Section */
 .blog-grid {
     display: none; /* Hide the blog grid */
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out; /* Slower transition for reveal */
+}
+
+.blog-grid.visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 /* Featured Project Section */
