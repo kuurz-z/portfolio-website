@@ -2017,6 +2017,16 @@ section#projects {
     text-align: center;
 }
 
+.contact-info a {
+    color: var(--text-color); /* Ensure consistent color for phone number link */
+    text-decoration: none; /* Optional: Remove underline if not desired */
+}
+
+.contact-info a:hover,
+.contact-info a:active {
+    color: var(--text-color); /* Prevent color change on hover/active */
+}
+
 .contact-info .social-links {
     margin-top: 1rem;
     justify-content: center;
@@ -2027,6 +2037,15 @@ section#projects {
     background: var(--glass-bg);
     border: 1px solid var(--glass-border);
     box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+}
+
+.dark-mode .contact-info a {
+    color: var(--text-color); /* Ensure consistent color for phone number link in dark mode */
+}
+
+.dark-mode .contact-info a:hover,
+.dark-mode .contact-info a:active {
+    color: var(--text-color); /* Prevent color change on hover/active in dark mode */
 }
 
 @media (max-width: 992px) {
