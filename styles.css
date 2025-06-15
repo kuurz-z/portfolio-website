@@ -342,10 +342,11 @@ nav ul {
     list-style: none;
     display: flex;
     justify-content: center;
-    gap: 3rem;
+    gap: 2rem;
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 1rem;
+    flex-wrap: wrap;
 }
 
 nav a {
@@ -360,6 +361,7 @@ nav a {
     display: inline-block;
     font-size: 0.95rem;
     letter-spacing: 0.5px;
+    white-space: nowrap;
 }
 
 nav a::before {
@@ -417,7 +419,60 @@ nav a.active::after {
     background: var(--secondary-color);
 }
 
-/* Mobile Navigation */
+/* Carousel Buttons */
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(52, 152, 219, 0.8);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    cursor: pointer;
+    z-index: 10;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    transition: background 0.3s, transform 0.3s, opacity 0.3s;
+}
+
+.carousel-btn:hover {
+    background: var(--secondary-color);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.prev-btn {
+    left: calc(50% - 190px - 45px);
+}
+
+.next-btn {
+    right: calc(50% - 190px - 45px);
+}
+
+/* Responsive Navigation and Carousel Buttons */
+@media (max-width: 992px) {
+    nav ul {
+        gap: 1.5rem;
+    }
+    
+    nav a {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+    }
+    
+    .prev-btn {
+        left: calc(50% - 190px - 45px);
+    }
+    
+    .next-btn {
+        right: calc(50% - 190px - 45px);
+    }
+}
+
 @media (max-width: 768px) {
     nav {
         padding: 1rem;
@@ -428,36 +483,100 @@ nav a.active::after {
     }
 
     nav ul {
-        gap: 1.5rem;
-        padding: 0 0.5rem;
-    }
-
-    nav a {
-        padding: 0.5rem 1rem;
-        font-size: 0.9rem;
-    }
-
-    .hero-content {
-        padding: 0 1rem;
-    }
-}
-
-@media (max-width: 480px) {
-    nav ul {
         gap: 1rem;
+        padding: 0 0.5rem;
     }
 
     nav a {
         padding: 0.4rem 0.8rem;
         font-size: 0.85rem;
     }
+    
+    .carousel-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 1.5rem;
+    }
+    
+    .prev-btn {
+        left: calc(50% - 165px - 40px); /* 165px = half of 330px viewport; 40px = button width */
+    }
+    
+    .next-btn {
+        right: calc(50% - 165px - 40px);
+    }
+}
 
-    .hero {
-        padding: 6rem 1rem;
+@media (max-width: 576px) {
+    nav ul {
+        gap: 0.5rem;
     }
 
-    .hero-content {
-        padding: 0 0.5rem;
+    nav a {
+        padding: 0.3rem 0.6rem;
+        font-size: 0.8rem;
+    }
+    
+    .carousel-btn {
+        width: 35px;
+        height: 35px;
+        font-size: 1.2rem;
+    }
+    
+    .prev-btn {
+        left: calc(50% - 165px - 35px); /* 165px = half of 330px viewport; 35px = button width */
+    }
+    
+    .next-btn {
+        right: calc(50% - 165px - 35px);
+    }
+}
+
+@media (max-width: 480px) {
+    section#projects {
+        padding: 3rem 15px;
+    }
+    .projects-viewport-wrapper {
+        max-width: 295px;
+    }
+    .project-card {
+        width: 280px;
+    }
+    .carousel-btn {
+        width: 35px;
+        height: 35px;
+        font-size: 1.2rem;
+    }
+    .prev-btn {
+        left: calc(50% - 147.5px - 35px); /* 147.5px = half of 295px viewport; 35px = button width */
+    }
+    .next-btn {
+        right: calc(50% - 147.5px - 35px);
+    }
+}
+
+@media (max-width: 400px) {
+    nav ul {
+        gap: 0.3rem;
+    }
+
+    nav a {
+        padding: 0.25rem 0.5rem;
+        font-size: 0.75rem;
+    }
+    
+    .carousel-btn {
+        width: 30px;
+        height: 30px;
+        font-size: 1rem;
+    }
+    
+    .prev-btn {
+        left: calc(50% - 147.5px - 30px); /* 147.5px = half of 295px viewport; 30px = button width */
+    }
+    
+    .next-btn {
+        right: calc(50% - 147.5px - 30px);
     }
 }
 
@@ -930,87 +1049,6 @@ section#projects {
     display: flex;
     flex-direction: column;
     height: auto;
-}
-
-.carousel-btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(52, 152, 219, 0.8);
-    color: white;
-    border: none;
-    border-radius: 50%;
-    width: 45px;
-    height: 45px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.8rem;
-    cursor: pointer;
-    z-index: 10;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-    transition: background 0.3s, transform 0.3s, opacity 0.3s;
-}
-
-.carousel-btn:hover {
-    background: var(--secondary-color);
-    transform: translateY(-50%) scale(1.1);
-}
-
-.prev-btn {
-    left: 600px; 
-}
-
-.next-btn {
-    right: 600px; 
-}
-
-@media (max-width: 768px) {
-    section#projects {
-        padding: 4rem 20px;
-    }
-    .projects-viewport-wrapper {
-        max-width: 330px;
-    }
-    .project-card {
-        width: 300px;
-    }
-    .carousel-btn {
-        width: 40px;
-        height: 40px;
-        font-size: 1.5rem;
-        left: 20px; /* Adjusted for smaller screens */
-        right: 20px; /* Adjusted for smaller screens */
-    }
-}
-
-@media (max-width: 480px) {
-    section#projects {
-        padding: 3rem 15px;
-    }
-    .projects-viewport-wrapper {
-        max-width: 295px;
-    }
-    .project-card {
-        width: 280px;
-    }
-    .carousel-btn {
-        width: 35px;
-        height: 35px;
-        font-size: 1.2rem;
-        left: 10px; /* Adjusted for very small screens */
-        right: 10px; /* Adjusted for very small screens */
-    }
-}
-
-/* Dark mode adjustments for carousel */
-.dark-mode .carousel-btn {
-    background: rgba(139, 184, 228, 0.8);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
-}
-
-.dark-mode .carousel-btn:hover {
-    background: var(--secondary-color);
 }
 
 .project-image {
