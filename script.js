@@ -266,6 +266,63 @@ function handleFeaturedViewProject() {
     }
 }
 
+// Initialize Projects Carousel
+function initProjectsCarousel() {
+    const projectsGrid = document.querySelector('.projects-grid');
+    const prevBtn = document.querySelector('section#projects .prev-btn');
+    const nextBtn = document.querySelector('section#projects .next-btn');
+
+    if (projectsGrid && prevBtn && nextBtn) {
+        // Calculate the scroll amount dynamically based on card width and gap
+        const firstCard = projectsGrid.querySelector('.project-card');
+        const computedStyle = getComputedStyle(projectsGrid);
+        const gap = parseFloat(computedStyle.gap); // Get the gap value
+
+        let scrollAmount = 0;
+        if (firstCard) {
+            scrollAmount = firstCard.offsetWidth + gap;
+        }
+
+        prevBtn.addEventListener('click', () => {
+            projectsGrid.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+        });
+
+        nextBtn.addEventListener('click', () => {
+            projectsGrid.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+        });
+
+        // Function to check and update button visibility
+        const checkCarouselButtons = () => {
+            // Add a small tolerance for floating point inaccuracies
+            const tolerance = 1; 
+
+            // Hide prev button if at the start
+            if (projectsGrid.scrollLeft <= tolerance) {
+                prevBtn.style.opacity = '0';
+                prevBtn.style.pointerEvents = 'none';
+            } else {
+                prevBtn.style.opacity = '1';
+                prevBtn.style.pointerEvents = 'auto';
+            }
+
+            // Hide next button if at the end
+            if (projectsGrid.scrollLeft + projectsGrid.clientWidth >= projectsGrid.scrollWidth - tolerance) {
+                nextBtn.style.opacity = '0';
+                nextBtn.style.pointerEvents = 'none';
+            } else {
+                nextBtn.style.opacity = '1';
+                nextBtn.style.pointerEvents = 'auto';
+            }
+        };
+
+        // Initial check
+        checkCarouselButtons();
+
+        // Check on scroll
+        projectsGrid.addEventListener('scroll', checkCarouselButtons);
+    }
+}
+
 // Initialize when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
     handleScroll();
@@ -275,6 +332,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initProfileParallax();
     initScrollProgress();
     handleFeaturedViewProject();
+    initProjectsCarousel();
     
     // Apply typing animation to header subtitle
     const subtitle = document.querySelector('.hero-text .tagline');
