@@ -34,27 +34,27 @@ function handleScroll() {
     let scrollTimeout;
     let isScrolling = false;
 
+    // Function to update active navigation link based on scroll position
     function updateActiveSection() {
-        if (isScrolling) return;
-
-        const scrollPosition = window.scrollY;
-        const windowHeight = window.innerHeight;
-        const headerOffset = 80;
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('nav ul li a');
+        let currentActive = null;
 
         sections.forEach(section => {
-            const sectionTop = section.offsetTop - headerOffset;
+            const sectionTop = section.offsetTop;
             const sectionHeight = section.clientHeight;
-            const sectionId = section.getAttribute('id');
-            const sectionBottom = sectionTop + sectionHeight;
+            // Use a threshold to activate section earlier or later
+            const offset = window.innerHeight * 0.3; // Activate when 30% of section is in view
 
-            // Check if the section is in view
-            if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
-                navLinks.forEach(link => {
-                    link.classList.remove('active');
-                    if (link.getAttribute('href') === `#${sectionId}`) {
-                        link.classList.add('active');
-                    }
-                });
+            if (window.scrollY >= sectionTop - offset && window.scrollY < sectionTop + sectionHeight - offset) {
+                currentActive = section.getAttribute('id');
+            }
+        });
+
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === `#${currentActive}`) {
+                link.classList.add('active');
             }
         });
     }
@@ -89,7 +89,6 @@ function handleScroll() {
         }, 100);
     }
 
-    // Throttle scroll event
     let ticking = false;
     window.addEventListener('scroll', () => {
         if (!ticking) {
@@ -101,7 +100,7 @@ function handleScroll() {
         }
     });
 
-    // Initial check for active section
+    // Initial check for active section on load
     updateActiveSection();
 }
 
