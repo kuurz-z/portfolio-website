@@ -66,7 +66,14 @@ function handleScroll() {
 
         navLinks.forEach(link => {
             link.classList.remove('active');
-            if (link.getAttribute('href') === `#${currentActive}`) {
+            let targetId = currentActive;
+
+            // Special handling for featured-details to link it to featured-project in nav
+            if (currentActive === 'featured-details') {
+                targetId = 'featured-project';
+            }
+
+            if (link.getAttribute('href') === `#${targetId}`) {
                 link.classList.add('active');
             }
         });
@@ -261,6 +268,7 @@ function handleFeaturedViewProject() {
     const featuredSection = document.querySelector('.featured-project-section');
     const detailsSection = document.getElementById('featured-details');
     const backBtn = document.getElementById('back-to-featured');
+    
     if (btn && featuredSection && detailsSection) {
         btn.addEventListener('click', function(e) {
             e.preventDefault();
@@ -274,7 +282,7 @@ function handleFeaturedViewProject() {
         backBtn.addEventListener('click', function(e) {
             e.preventDefault();
             detailsSection.style.display = 'none';
-            featuredSection.style.display = 'flex';
+            featuredSection.style.display = 'flex'; // Revert to flex for the entire section
         });
     }
 }

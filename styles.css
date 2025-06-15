@@ -11,6 +11,7 @@
     --gradient: linear-gradient(135deg, var(--primary-color), var(--dark-bg));
     --glass-bg: rgba(255, 255, 255, 0.1);
     --glass-border: rgba(255, 255, 255, 0.2);
+    --button-text-color: #ffffff; /* Added for light mode buttons */
 }
 
 /* Dark mode variables */
@@ -24,6 +25,7 @@
     --gradient: linear-gradient(135deg, var(--dark-bg), var(--light-bg));
     --glass-bg: rgba(255, 255, 255, 0.08);
     --glass-border: rgba(255, 255, 255, 0.05);
+    --button-text-color: #1a252f; /* Added for dark mode buttons */
 }
 
 .dark-mode body {
@@ -114,9 +116,25 @@
 }
 
 .dark-mode section h2::after {
-    background: linear-gradient(90deg, var(--secondary-color), var(--accent-color));
-    height: 5px;
-    box-shadow: 0 0 10px rgba(139, 184, 228, 0.5);
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%; /* Centered horizontally */
+    transform: translateX(-50%); /* Ensures perfect centering */
+    width: 60px; /* Adjust width as needed */
+    height: 4px;
+    background: var(--secondary-color);
+    border-radius: 2px;
+    transition: width 0.3s ease-out, background 0.3s ease-out, transform 0.3s ease-out;
+}
+
+section h2.visible::after {
+    width: 100px; /* Example of expansion on visible */
+}
+
+section:hover h2::after {
+    width: 80px; /* Example of hover expansion */
+    background: var(--accent-color);
 }
 
 .dark-mode .about-content .bio,
@@ -132,7 +150,15 @@
 }
 
 .dark-mode .interests h3::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%; /* Center the underline */
+    transform: translateX(-50%); /* Adjust for perfect centering */
+    width: 40px;
+    height: 3px;
     background: var(--secondary-color);
+    border-radius: 2px;
 }
 
 .dark-mode .interests li:hover {
@@ -155,13 +181,11 @@
 }
 
 .dark-mode .tech-tag {
-    background: rgba(139, 184, 228, 0.15);
-    color: var(--secondary-color);
+    /* REMOVED: Consolidated tech-tag styles */
 }
 
 .dark-mode .tech-tag:hover {
-    background: var(--secondary-color);
-    color: var(--dark-bg);
+    /* REMOVED: Consolidated tech-tag styles */
 }
 
 .dark-mode .skills-container .skill-category {
@@ -275,8 +299,7 @@
     color: var(--secondary-color);
 }
 .dark-mode #featured-details .tech-tag {
-    background: rgba(139, 184, 228, 0.25);
-    color: #fff;
+    /* REMOVED: Consolidated tech-tag styles */
 }
 .dark-mode #featured-details i {
     color: var(--secondary-color);
@@ -296,8 +319,7 @@ body:not(.dark-mode) #featured-details strong {
     color: #3498db !important;
 }
 body:not(.dark-mode) #featured-details .tech-tag {
-    background: rgba(52, 152, 219, 0.1) !important;
-    color: #3498db !important;
+    /* REMOVED: Consolidated tech-tag styles */
 }
 body:not(.dark-mode) #featured-details i {
     color: #3498db !important;
@@ -1064,22 +1086,12 @@ section.visible {
 /* Section Titles */
 section h2 {
     font-size: 2.8rem;
-    margin-bottom: 4rem;
+    margin-bottom: 2rem;
     color: var(--primary-color);
+    text-align: center;
     position: relative;
-    padding-bottom: 1.5rem;
-    text-align: left;
-    text-transform: uppercase;
-    letter-spacing: 3px;
-    font-weight: 700;
-    transition: all 0.3s ease;
-    max-width: 1600px;
-    margin-left: auto;
-    margin-right: auto;
-    width: 100%;
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    padding-bottom: 1rem;
+    display: inline-block; /* To allow auto width for the ::after pseudo-element */
 }
 
 section h2.visible {
@@ -1091,16 +1103,22 @@ section h2::after {
     content: '';
     position: absolute;
     bottom: 0;
-    left: 0;
-    width: 80px;
+    left: 50%; /* Centered horizontally */
+    transform: translateX(-50%); /* Ensures perfect centering */
+    width: 60px; /* Adjust width as needed */
     height: 4px;
-    background: linear-gradient(90deg, var(--secondary-color), var(--accent-color));
-    transition: width 0.3s ease;
+    background: var(--secondary-color);
     border-radius: 2px;
+    transition: width 0.3s ease-out, background 0.3s ease-out, transform 0.3s ease-out;
+}
+
+section h2.visible::after {
+    width: 100px; /* Example of expansion on visible */
 }
 
 section:hover h2::after {
-    width: 120px;
+    width: 80px; /* Example of hover expansion */
+    background: var(--accent-color);
 }
 
 /* Ensure proper spacing between sections */
@@ -1177,13 +1195,15 @@ section:hover h2::after {
     color: var(--secondary-color);
     position: relative;
     padding-bottom: 0.8rem;
+    text-align: center;
 }
 
 .interests h3::after {
     content: '';
     position: absolute;
     bottom: 0;
-    left: 0;
+    left: 50%; /* Center the underline */
+    transform: translateX(-50%); /* Adjust for perfect centering */
     width: 40px;
     height: 3px;
     background: var(--secondary-color);
@@ -1348,10 +1368,30 @@ section#projects {
 
 .tech-tag:hover {
     background: var(--secondary-color);
-    color: #fff;
-    padding: 0.3rem 0.7rem;
-    border-radius: 16px;
-    font-size: 0.8rem;
+    color: var(--dark-bg);
+}
+
+/* Dark Mode Tech Tags */
+.dark-mode .tech-tag {
+    background: rgba(139, 184, 228, 0.15);
+    color: var(--secondary-color);
+}
+
+.dark-mode .tech-tag:hover {
+    background: var(--secondary-color);
+    color: var(--dark-bg);
+}
+
+/* Featured Project Tech Tags (Light Mode) */
+body:not(.dark-mode) #featured-details .tech-tag {
+    background: rgba(52, 152, 219, 0.1) !important;
+    color: #3498db !important;
+}
+
+/* Featured Project Tech Tags (Dark Mode) */
+.dark-mode #featured-details .tech-tag {
+    background: rgba(139, 184, 228, 0.25) !important;
+    color: #fff !important;
 }
 
 /* Skills Section */
@@ -1392,7 +1432,7 @@ section#projects {
     content: '';
     position: absolute;
     top: 0;
-    left: 0;
+    left: 0; 
     width: 100%;
     height: 100%;
     background: linear-gradient(45deg, transparent, rgba(52, 152, 219, 0.1), transparent);
@@ -1728,15 +1768,46 @@ section#projects {
 
 /* Featured Project Section */
 .featured-project-section {
-    padding: 6rem 4rem; /* Revert to default padding for larger screens */
-    width: 100%;
-    margin: 0 auto; /* Ensure the section itself is centered if it doesn't span full width */
-    display: flex;
+    padding: 60px 0 30px 0; /* Reduced padding-bottom */
+    text-align: center;
+    overflow: hidden;
+    position: relative;
+    opacity: 1; /* Added to ensure visibility */
+    visibility: visible; /* Added to ensure visibility */
+    display: flex; /* Ensure it behaves as a flex container */
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    min-height: 80vh;
-    background-color: var(--light-bg);
-    color: var(--text-color);
+}
+
+#featured-details {
+    padding: 0;
+    text-align: left;
+}
+
+#featured-details h2 {
+    text-align: center;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+#featured-details .featured-details-content {
+    text-align: left;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px 32px; /* Adjusted padding-top to reduce gap */
+}
+
+.dark-mode #featured-details .featured-details-content {
+    background: var(--dark-bg);
+    border-radius: 16px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+body:not(.dark-mode) #featured-details .featured-details-content {
+    background: var(--light-bg);
+    border-radius: 16px;
+    box-shadow: 0 4px 16px rgba(44, 62, 80, 0.08);
 }
 
 .featured-project-content {
@@ -1845,9 +1916,9 @@ section#projects {
     }
     
     section h2 {
-        font-size: 2rem;
+        font-size: 2.2rem;
+        margin-bottom: 1.5rem;
         text-align: center;
-        padding-bottom: 1rem;
     }
     
     section h2::after {
@@ -2019,6 +2090,8 @@ section#projects {
     
     section h2 {
         font-size: 1.8rem;
+        margin-bottom: 1.2rem;
+        text-align: center;
     }
     
     .about-content,
@@ -2386,6 +2459,7 @@ footer {
     /* Featured Project Section adjustments */
     .featured-project-section {
         padding: 4rem 2rem;
+        
     }
 
     .featured-project-content {
@@ -2482,4 +2556,69 @@ footer {
 #featured-details.force-light div,
 #featured-details.force-light span {
     color: #222;
-} 
+}
+
+.project-link-btn {
+    display: block;
+    width: 100%;
+    text-align: center;
+    margin-top: auto; /* Pushes the button to the bottom */
+    padding: 0.8rem 1.5rem;
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-link-btn:hover {
+    background-color: var(--secondary-color);
+    color: var(--button-text-color);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.project-link-btn.primary {
+    background-color: var(--primary-color);
+    color: var(--button-text-color);
+}
+
+.project-link-btn.primary:hover {
+    background-color: var(--secondary-color);
+    color: var(--button-text-color);
+}
+
+.project-link-btn.secondary {
+    background-color: transparent;
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+}
+
+.project-link-btn.secondary:hover {
+    background-color: var(--primary-color);
+    color: var(--button-text-color);
+    border-color: var(--primary-color);
+}
+
+.dark-mode .project-link-btn.primary {
+    background-color: var(--secondary-color);
+    color: var(--button-text-color);
+}
+
+.dark-mode .project-link-btn.primary:hover {
+    background-color: var(--primary-color);
+    color: var(--button-text-color);
+}
+
+.dark-mode .project-link-btn.secondary {
+    background-color: transparent;
+    color: var(--secondary-color);
+    border: 2px solid var(--secondary-color);
+}
+
+.dark-mode .project-link-btn.secondary:hover {
+    background-color: var(--secondary-color);
+    color: var(--button-text-color);
+    border-color: var(--secondary-color);
+}
+
