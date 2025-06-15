@@ -1782,6 +1782,7 @@ body:not(.dark-mode) #featured-details .tech-tag {
 
 #featured-details {
     padding: 0;
+    margin-bottom: 60px; /* Added margin to separate from footer */
     text-align: left;
 }
 
