@@ -1,12 +1,16 @@
 // Smooth scrolling for navigation links with easing
+console.log('Script loaded. Attaching event listeners to nav links...');
 document.querySelectorAll('nav a').forEach(anchor => {
+    console.log('Found nav link:', anchor.getAttribute('href'));
     anchor.addEventListener('click', function(e) {
+        console.log('Nav link clicked:', this.getAttribute('href'));
         e.preventDefault();
         const targetId = this.getAttribute('href');
         const section = document.querySelector(targetId);
+        console.log('Target ID:', targetId, 'Section found:', !!section);
         
         if (section) {
-            const headerOffset = 80;
+            const headerOffset = 0; // Temporarily set to 0 for debugging
             const elementPosition = section.getBoundingClientRect().top;
             const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
 

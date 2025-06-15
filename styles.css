@@ -306,8 +306,9 @@ body:not(.dark-mode) #featured-details i {
 html {
     scroll-behavior: smooth;
     width: 100%;
-    height: 100%; /* Ensure html and body take full height */
-    overflow-x: hidden; /* Ensure no horizontal scrollbar for the entire page */
+    /* height: 100%; Ensure html and body take full height */
+    /* overflow-x: hidden; Ensure no horizontal scrollbar for the entire page */
+    overflow-y: scroll !important; /* TEMPORARY: Force vertical scroll for debugging */
 }
 
 body {
@@ -318,8 +319,9 @@ body {
     margin: 0;
     padding: 0;
     width: 100%; /* Ensure body takes full width */
-    height: 100%; /* Ensure body takes full height */
-    overflow-x: hidden; /* Explicitly hide horizontal overflow for body */
+    /* height: 100%; Ensure body takes full height */
+    /* overflow-x: hidden; Explicitly hide horizontal overflow for body */
+    overflow-y: scroll !important; /* TEMPORARY: Force vertical scroll for debugging */
 }
 
 body.no-scroll {
@@ -636,7 +638,7 @@ nav a.active::after {
 
 @media (max-width: 480px) {
     section {
-        padding: 3rem 1rem; /* Further reduced horizontal padding */
+        padding: 3rem 1rem; /* Keep further reduced horizontal padding */
     }
     
     section h2 {
@@ -675,12 +677,23 @@ nav a.active::after {
     }
 
     .featured-project-section {
-        padding: 3rem 1rem; /* Further reduced horizontal padding */
+        padding: 3rem 1rem;
     }
 
     .featured-project-content {
+        grid-template-columns: 1fr; /* Stack content vertically */
         padding: 1.5rem;
         gap: 2rem;
+    }
+
+    .project-details {
+        text-align: center; /* Center text content for stacked layout */
+        order: 1; /* Move details above image on smaller screens */
+    }
+
+    .project-image-container {
+        margin-top: 2rem; /* Add margin above image when stacked */
+        order: 2; /* Move image below details on smaller screens */
     }
 
     .project-details h3 {
@@ -704,14 +717,6 @@ nav a.active::after {
     }
     .project-card {
         flex: 0 0 260px; /* Card width */
-    }
-
-    .prev-btn {
-        left: calc(50% - 130px - 35px - 10px); /* Half card width (130px) - button width (35px) - offset (10px) */
-    }
-    
-    .next-btn {
-        right: calc(50% - 130px - 35px - 10px); /* Half card width (130px) - button width (35px) - offset (10px) */
     }
 }
 
@@ -1580,7 +1585,7 @@ section#projects {
 
 /* Featured Project Section */
 .featured-project-section {
-    padding: 6rem 4rem;
+    padding: 6rem 4rem; /* Revert to default padding for larger screens */
     width: 100%;
     margin: 0 auto; /* Ensure the section itself is centered if it doesn't span full width */
     display: flex;
@@ -1593,8 +1598,8 @@ section#projects {
 
 .featured-project-content {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 5rem;
+    grid-template-columns: 1fr 1fr; /* Image on right for larger screens */
+    gap: 5rem; /* Revert to default gap for larger screens */
     max-width: 1400px;
     width: 100%;
     align-items: center;
@@ -1603,35 +1608,35 @@ section#projects {
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.1);
     box-shadow: var(--box-shadow);
-    padding: 3rem;
+    padding: 3rem; /* Revert to default padding for larger screens */
     margin: 0 auto; /* Center the content within the section */
 }
 
 .project-details {
-    display: flex;
+    display: flex; /* Revert to default flex for larger screens */
     flex-direction: column;
     justify-content: center;
+    text-align: left; /* Revert to default text align */
+    order: 0; /* Default order for text on left */
+}
+
+.project-image-container {
+    margin-top: 0; /* No margin-top here for larger screens */
+    order: 0; /* Default order for image on right */
 }
 
 .project-details h3 {
-    font-size: 2.5rem;
+    font-size: 2.5rem; /* Revert to default font size */
     margin-bottom: 1.5rem;
     color: var(--primary-color);
     line-height: 1.2;
 }
 
 .project-description {
-    font-size: 1.1rem;
+    font-size: 1.1rem; /* Revert to default font size */
     line-height: 1.8;
     margin-bottom: 2rem;
     color: var(--text-color);
-}
-
-.project-image-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
 }
 
 .featured-project-image {
@@ -1693,7 +1698,7 @@ section#projects {
 
 @media (max-width: 768px) {
     section {
-        padding: 4rem 1.5rem; /* Reduced horizontal padding */
+        padding: 4rem 1.5rem; /* Keep reduced horizontal padding */
     }
     
     section h2 {
@@ -1780,12 +1785,23 @@ section#projects {
 
     /* Featured project section adjustments */
     .featured-project-section {
-        padding: 4rem 1.5rem; /* Reduced horizontal padding */
+        padding: 4rem 1.5rem; /* Keep reduced horizontal padding */
     }
 
     .featured-project-content {
-        padding: 2rem; /* Keep as is or slight reduction if needed */
-        gap: 3rem; /* Adjusted gap for smaller screens */
+        grid-template-columns: 1fr; /* Stack content vertically */
+        padding: 2rem; 
+        gap: 3rem;
+    }
+
+    .project-details {
+        text-align: center; /* Center text content for stacked layout */
+        order: 1; /* Move details above image on smaller screens */
+    }
+
+    .project-image-container {
+        margin-top: 3rem; /* Add margin above image when stacked */
+        order: 2; /* Move image below details on smaller screens */
     }
 
     .project-details h3 {
@@ -1855,7 +1871,7 @@ section#projects {
 
 @media (max-width: 480px) {
     section {
-        padding: 3rem 1rem; /* Further reduced horizontal padding */
+        padding: 3rem 1rem; /* Keep further reduced horizontal padding */
     }
     
     section h2 {
@@ -1894,12 +1910,23 @@ section#projects {
     }
 
     .featured-project-section {
-        padding: 3rem 1rem; /* Further reduced horizontal padding */
+        padding: 3rem 1rem;
     }
 
     .featured-project-content {
+        grid-template-columns: 1fr; /* Stack content vertically */
         padding: 1.5rem;
         gap: 2rem;
+    }
+
+    .project-details {
+        text-align: center; /* Center text content for stacked layout */
+        order: 1; /* Move details above image on smaller screens */
+    }
+
+    .project-image-container {
+        margin-top: 2rem; /* Add margin above image when stacked */
+        order: 2; /* Move image below details on smaller screens */
     }
 
     .project-details h3 {
